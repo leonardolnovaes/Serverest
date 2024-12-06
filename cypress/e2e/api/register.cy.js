@@ -27,7 +27,7 @@ describe('Cadastro', () => {
     });
   });
 
-  it.only('Validar a validação dos campos obrigatórios', () => {
+  it('Validar a validação dos campos obrigatórios', () => {
     cy.request({
       method: 'POST',
       url: 'https://serverest.dev/usuarios', // URL de cadastro (substitua pelo correto)
