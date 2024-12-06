@@ -13,29 +13,42 @@ on:
           - e2e
 
 jobs:
-  setup-environment:
-    uses: ./.github/workflows/setup-workflow.yml  # Chamando o workflow de setup
-
   run-tests:
     runs-on: ubuntu-latest
-    needs: setup-environment  # Garante que o setup seja concluído antes de rodar os testes
+
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2  # Checkout do código
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies
+        run: |
+          npm install
 
       - name: Run Cypress Tests
         run: |
           if [ "${{ github.event.inputs.test_type }}" == "api" ]; then
-            npm run cy-api:run  # Comando para rodar testes API
+            npm run cy-api:run  # Comando para rodar os testes de API
           else
-            npm run cy-e2e:run  # Comando para rodar testes E2E
+            npm run cy-e2e:run  # Comando para rodar os testes E2E
           fi
 
-  generate-report:
-    needs: run-tests  # Só executa após os testes serem executados
+generate-report:
+    needs: run-tests  # Garante que este job execute somente após o job 'run-tests' finalizar
     runs-on: ubuntu-latest
     steps:
       - name: Generate Allure Report
         run: |
-          allure generate allure-results --clean -o allure-report  # Gerar relatório Allure
-          allure open allure-report  # Abrir o relatório no navegador
+          allure generate allure-results --clean -o allure-report  # Gera o relatório Allure
+
+      - name: Upload Allure Report to GitHub Pages (opcional)
+        uses: peaceiris/actions-gh-pages@v3
+        if: success()  # Somente se os testes passarem
+        with:
+          folder: allure-report  # O diretório onde o relatório foi gerado
+          target_branch: gh-pages  # A branch onde será feito o upload
+          commit_message: 'Deploy Allure Report'  # Mensagem do commit
