@@ -37,18 +37,18 @@ jobs:
             npm run cy-e2e:run  # Comando para rodar os testes E2E
           fi
 
-generate-report:
-    needs: run-tests  # Garante que este job execute somente após o job 'run-tests' finalizar
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate Allure Report
-        run: |
-          allure generate allure-results --clean -o allure-report  # Gera o relatório Allure
+  generate-report:
+      needs: run-tests  # Garante que este job execute somente após o job 'run-tests' finalizar
+      runs-on: ubuntu-latest
+      steps:
+        - name: Generate Allure Report
+          run: |
+            allure generate allure-results --clean -o allure-report  # Gera o relatório Allure
 
-      - name: Upload Allure Report to GitHub Pages (opcional)
-        uses: peaceiris/actions-gh-pages@v3
-        if: success()  # Somente se os testes passarem
-        with:
-          folder: allure-report  # O diretório onde o relatório foi gerado
-          target_branch: gh-pages  # A branch onde será feito o upload
-          commit_message: 'Deploy Allure Report'  # Mensagem do commit
+        - name: Upload Allure Report to GitHub Pages (opcional)
+          uses: peaceiris/actions-gh-pages@v3
+          if: success()  # Somente se os testes passarem
+          with:
+            folder: allure-report  # O diretório onde o relatório foi gerado
+            target_branch: gh-pages  # A branch onde será feito o upload
+            commit_message: 'Deploy Allure Report'  # Mensagem do commit
