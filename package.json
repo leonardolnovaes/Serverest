@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cy:run": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy-e2e:run": "cypress run",
+    "cy-api:run": "cypress run"
   },
   "keywords": [],
   "author": "",
