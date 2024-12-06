@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "allure-commandline": "^2.32.0",
     "cypress": "^13.16.1",
     "cypress-file-upload": "^5.0.8"
   },
