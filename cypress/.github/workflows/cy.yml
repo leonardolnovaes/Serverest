@@ -1,0 +1,31 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - create-tests    # Executa no push para a branch 'main'
+  pull_request:
+    branches:
+      - create-tests    # Executa quando há um PR para a branch 'main'
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest   # Você pode alterar para 'windows-latest' ou 'macos-latest' se preferir
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2   # Faz o checkout do código no repositório
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Especifica a versão do Node.js que será usada
+
+      - name: Install Dependencies
+        run: |
+          npm install   # Instala as dependências do projeto (incluindo Cypress)
+
+      - name: Run Cypress Tests
+        run: |
+          npm run cy:run 
+
