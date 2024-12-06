@@ -1,8 +1,25 @@
-// cypress/support/elements.js
-export const loginPage = {
-    emailInput: '[data-testid="email"]', // Seletor do campo de e-mail
-    passwordInput: '[data-testid="senha"]', // Seletor do campo de senha
-    loginButton: '[data-testid="entrar"]', // Botão de login
-    errorMessage: '.alert span', // Mensagem de erro
-    registerButton: '[data-testid="cadastrar"]'
+const elements = {
+
+    //LOGIN
+    emailInput: '[data-testid="email"]',
+    passwordInput: '[data-testid="senha"]',
+    loginButton: '[data-testid="entrar"]', 
+    errorMessage: '.alert', 
+    registerButton: '[data-testid="cadastrar"]',
+
+    //CADASTRO DE USUÁRIO
+    nameInput: '[data-testid="nome"]',
+    passwordInputRegister: '[data-testid="password"]',
+
+    //MENU
+    registerProductButtonMenu: '[data-testid="cadastrarProdutos"]',
+
+    //CADASTRO DE PRODUTO
+    priceInput: '[data-testid="preco"]',
+    descriptionInput: '[data-testid="descricao"]',
+    quantityInput: '[data-testid="quantity"]',
+    imageFile: '[data-testid="imagem"]',
+    registerProductButton: '[data-testid="cadastarProdutos"]',
+
 };
+export default elements;
