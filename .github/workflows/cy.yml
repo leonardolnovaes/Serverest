@@ -15,7 +15,6 @@ on:
 jobs:
   setup-environment:
     uses: ./.github/workflows/setup-workflow.yml  # Chamando o workflow de setup
-    id: setup  # ID do job para facilitar o rastreamento
 
   run-tests:
     runs-on: ubuntu-latest
