@@ -1,31 +1,40 @@
 name: Run Cypress Tests
 
 on:
-  push:
-    branches:
-      - main    # Executa no push para a branch 'main'
-  pull_request:
-    branches:
-      - main    # Executa quando há um PR para a branch 'main'
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Selecione o tipo de teste a ser executado'
+        required: true
+        default: 'api'
+        type: choice
+        options:
+          - api
+          - e2e
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest   # Você pode alterar para 'windows-latest' ou 'macos-latest' se preferir
+  run-tests:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2   # Faz o checkout do código no repositório
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Especifica a versão do Node.js que será usada
+          node-version: '16'
 
       - name: Install Dependencies
         run: |
-          npm install   # Instala as dependências do projeto (incluindo Cypress)
+          npm install
 
-      - name: Run Cypress Tests
+      - name: Run API Tests
+        if: ${{ github.event.inputs.test_type == 'api' }}
         run: |
-          npm run cy:run 
+          npm run cy-api:run
 
+      - name: Run E2E Tests
+        if: ${{ github.event.inputs.test_type == 'e2e' }}
+        run: |
+          npm run cy-e2e:run
