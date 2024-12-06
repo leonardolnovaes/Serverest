@@ -3,10 +3,10 @@ name: Run Cypress Tests
 on:
   push:
     branches:
-      - create-tests    # Executa no push para a branch 'main'
+      - main    # Executa no push para a branch 'main'
   pull_request:
     branches:
-      - create-tests    # Executa quando há um PR para a branch 'main'
+      - main    # Executa quando há um PR para a branch 'main'
 
 jobs:
   cypress-run:
