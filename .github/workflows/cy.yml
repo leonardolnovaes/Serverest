@@ -46,14 +46,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: allure-results
-          path: ./allure-results
-
 
   generate-report:
     needs: run-tests  # Garante execução após os testes
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout o código novamente (caso necessário)
       - name: Checkout Code
         uses: actions/checkout@v2
 
@@ -61,7 +58,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: allure-results
-          path: ./allure-results  # Baixa para o diretório específico
+          path: ./allure-results
 
 
       - name: Install Allure
@@ -83,5 +80,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-          target_branch: gh-pages
           commit_message: 'Deploy Allure Report'
