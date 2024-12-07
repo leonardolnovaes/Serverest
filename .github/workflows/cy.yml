@@ -42,6 +42,11 @@ jobs:
           else
             npm run cy-e2e:run  # Comando para testes E2E
           fi
+      - name: Save Allure Results as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: allure-results
 
   generate-report:
     needs: run-tests  # Garante execução após os testes
@@ -51,6 +56,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Download Allure Results Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: allure-results
+          
       # Step 2: Instalar o Allure
       - name: Install Allure
         run: |
