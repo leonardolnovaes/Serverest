@@ -6,31 +6,18 @@ describe('Cadastro', () => {
   let user;
 
   beforeEach(() => {
-    user = registerPage.generateRandomUser() // Gera um usuário aleatório
-  });
-
-  it('Validar a realização do cadastro com sucesso', () => {
-    cy.request({
-      method: 'POST',
-      url: 'https://serverest.dev/usuarios', // URL de cadastro (substitua pelo correto)
-      body: {
-        nome: user.name,
-        email: user.email,
-        password: login.password,
-        administrador: "false"
-      },
-      failOnStatusCode: false // Não falha caso a resposta seja 4xx ou 5xx
-    }).then((response) => {
-      // Verificando se o cadastro foi realizado com sucesso
-      expect(response.status).to.eq(201); // Status 201 para criação
-      expect(response.body.message).to.eq('Cadastro realizado com sucesso');
+    cy.generateRandomUser().then((generatedUser) => {
+      user = generatedUser;
     });
   });
 
+  it('Validar a realização do cadastro com sucesso', () => {
+    cy.createUser(user)
+  })
   it('Validar a validação dos campos obrigatórios', () => {
     cy.request({
       method: 'POST',
-      url: 'https://serverest.dev/usuarios', // URL de cadastro (substitua pelo correto)
+      url: 'https://serverest.dev/usuarios',
       body: {
         nome: '',
         email: '',

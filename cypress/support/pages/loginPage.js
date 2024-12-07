@@ -25,10 +25,10 @@ class LoginPage {
     return this;
   }
 
-  verifySuccessfulLogin() {
+  verifySuccessfulLogin(name) {
     // Exemplo: verificar se a URL mudou após login
     cy.url().should("include", "/admin/home");
-    cy.get("h1").should("contain.text", "Bem Vindo  Teste Serverest"); // Verifica se o cabeçalho correto é exibido
+    cy.get("h1").should("contain.text", `Bem Vindo  ${name}`); // Verifica se o cabeçalho correto é exibido
     return this;
   }
   realizeLoginAPI(email, password) {

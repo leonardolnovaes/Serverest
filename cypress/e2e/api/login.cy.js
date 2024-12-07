@@ -1,19 +1,8 @@
-import login from '../../fixtures/login.json'; // Dados de login
+import login from '../../fixtures/login.json';
 
 describe('API - Login', () => {
   it('Deve realizar login com sucesso', () => {
-    cy.request({
-      method: 'POST',
-      url: 'https://serverest.dev/login',  // URL de login da API (substitua pela real)
-      body: {
-        email: login.email,
-        password: login.password
-      },
-    }).then((response) => {
-      expect(response.status).to.eq(200);  // Verifique se o status de resposta é 200 OK
-      expect(response.body).to.have.property('authorization'); // Certifique-se de que o token foi retornado (se houver)
-      expect(response.body.message).to.eq('Login realizado com sucesso'); 
-    });
+    cy.realizeLoginAPI(login.email, login.password)
   });
 
   it('Deve falhar ao tentar login com senha incorreta', () => {

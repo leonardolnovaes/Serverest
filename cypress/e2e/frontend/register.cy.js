@@ -6,7 +6,9 @@ describe('Cadastro', () => {
   let user;
 
   beforeEach(() => {
-    user = registerPage.generateRandomUser() // Gera um usuário aleatório
+    cy.generateRandomUser().then((generatedUser) => {
+      user = generatedUser;
+    });
     registerPage.visitRegistrationPage(); // Visita a página de cadastro
   });
 
