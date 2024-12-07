@@ -46,6 +46,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: allure-results
+          path: allure-results
+
 
   generate-report:
     needs: run-tests  # Garante execução após os testes
