@@ -38,7 +38,9 @@ jobs:
           else
             npm run cy-e2e:run  # Comando para testes E2E
           fi
+          
       - name: Save Allure Results as Artifact
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: allure-results
