@@ -66,7 +66,10 @@ jobs:
       - name: Install Allure
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-11-jre-headless  # Necessário para o Allure
+          sudo apt-get install -y openjdk-11-jre-headless  # Java é necessário para o Allure
+          curl -o allure.tar.gz -L https://github.com/allure-framework/allure2/releases/download/2.21.0/allure-2.21.0.tgz
+          tar -zxvf allure.tar.gz -C /opt/
+          sudo ln -s /opt/allure-2.21.0/bin/allure /usr/bin/allure
           npm install --save-dev allure-cypress
 
       - name: Generate Allure Report
