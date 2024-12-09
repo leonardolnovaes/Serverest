@@ -10,11 +10,13 @@ class LoginPage {
       .should("be.visible")
       .and("have.attr", "placeholder", "Digite sua senha")
       .type(password);
+    cy.intercept("**/usuarios").as("waitUser");
     cy.get(el.loginButton)
       .should("be.visible")
       .and("exist")
       .and("have.text", "Entrar")
       .click();
+    cy.wait("@waitUser");
     return this;
   }
 
@@ -40,7 +42,7 @@ class LoginPage {
         password: password,
       },
     }).then((response) => {
-        return cy.wrap(response.body.authorization)
+      return cy.wrap(response.body.authorization);
     });
   }
 }

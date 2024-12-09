@@ -4,6 +4,12 @@ Olá! Este repositório foi desenvolvido como parte do processo seletivo para Mo
 
 ---
 
+## 🛠️ Tecnologias utilizadas
+- **Cypress**: Automação de testes end-to-end.
+- **Allure Reports**: Geração de relatórios de execução.
+- **GitHub Actions**: Configuração do CI/CD.
+- **GitHub Pages**: Publicação dos relatórios de teste.
+
 ## 📂 Estrutura do Projeto
 
 - **`cypress/e2e/frontend/`**: Contém os testes de interface da aplicação (E2E).  
@@ -54,6 +60,31 @@ Para rodar este projeto, você precisará de:
 ## 🌟 Diferenciais do Projeto
 - **Organização:** Estrutura de pastas clara, separando Frontend e API, facilitando a manutenção e entendimento do projeto.  
 - **Boas práticas:** Uso de comandos customizados, mocks e asserções claras nos testes, garantindo robustez e eficiência.  
+
+---
+
+## 🚀 CI/CD - GitHub Actions
+
+Este projeto utiliza **GitHub Actions** para executar os testes e gerar relatórios automaticamente. Há suporte para testes do tipo **API** e **E2E**, que podem ser acionados manualmente via **Workflow Dispatch**.
+
+### **Como disparar o Workflow Dispatch**
+1. Acesse a aba **Actions** do repositório.
+2. Escolha o workflow chamado **Run Cypress Tests**.
+3. Clique em **Run Workflow**.
+4. Selecione o tipo de teste:
+   - `api`: Executa os testes de API.
+   - `e2e`: Executa os testes de interface.
+5. O workflow será iniciado, executando os testes e publicando os relatórios automaticamente.
+
+---
+
+## 📊 Relatórios Allure
+
+Os relatórios são gerados automaticamente e disponibilizados via **GitHub Pages**.
+
+### **Links para os relatórios**
+- **API Tests**: [https://leonardolnovaes.github.io/Serverest/api](https://leonardolnovaes.github.io/Serverest/api)
+- **E2E Tests**: [https://leonardolnovaes.github.io/Serverest/e2e](https://leonardolnovaes.github.io/Serverest/e2e)
 
 ---
 

@@ -1,7 +1,6 @@
 // cypress/support/pages/registerPage.js
 import el from "../elements"; // Certifique-se de que o caminho está correto
 class RegisterPage {
-
   visitRegistrationPage() {
     cy.visit("https://front.serverest.dev/");
     cy.get(el.registerButton)

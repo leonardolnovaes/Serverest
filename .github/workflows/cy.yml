@@ -17,25 +17,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout o código
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Step 2: Configurar o Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
 
-      # Step 3: Instalar dependências
       - name: Install Dependencies
         run: |
           npm install
 
-      # Step 4: Rodar testes com Cypress
       - name: Run Cypress Tests
         env:
-          CYPRESS_API_KEY: ${{ secrets.CYPRESS_API_KEY }} # Exemplo para variáveis de ambiente
+          CYPRESS_API_KEY: ${{ secrets.CYPRESS_API_KEY }}
         run: |
           if [ "${{ github.event.inputs.test_type }}" == "api" ]; then
             npm run cy-api:run  # Comando para testes de API
@@ -50,7 +46,7 @@ jobs:
 
 
   generate-report:
-    needs: run-tests  # Garante execução após os testes
+    needs: run-tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code

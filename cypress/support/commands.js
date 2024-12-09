@@ -26,7 +26,7 @@
 import "cypress-file-upload";
 import "allure-cypress";
 import { faker } from "@faker-js/faker";
-const fs = require('fs'); // Importa o módulo File System
+const fs = require("fs"); // Importa o módulo File System
 
 // cypress/support/commands.js
 
@@ -86,7 +86,7 @@ Cypress.Commands.add("createUser", (user) => {
         cy.log("Novo usuário criado com sucesso.");
         expect(response.status).to.eq(201); // Status 201 para criação
         expect(response.body.message).to.eq("Cadastro realizado com sucesso");
-        return cy.wrap(newUser)
+        return cy.wrap(newUser);
       } else {
         throw new Error("Falha ao criar novo usuário.");
       }
@@ -103,13 +103,12 @@ Cypress.Commands.add("generateRandomUser", () => {
 
 Cypress.Commands.add("saveUserToFixture", (fileName, userData) => {
   const filePath = `cypress/fixtures/${fileName}.json`; // Caminho do arquivo
-  
-  
+
   // Lê o conteúdo existente do arquivo
   cy.readFile(filePath).then((existingData) => {
     const updatedData = { ...existingData, ...userData }; // Atualiza os dados existentes com os novos
 
     // Escreve os dados atualizados no arquivo
-    cy.writeFile(filePath, updatedData)
+    cy.writeFile(filePath, updatedData);
   });
 });
