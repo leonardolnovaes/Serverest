@@ -1,15 +1,6 @@
 // cypress/support/pages/registerPage.js
 import el from "../elements"; // Certifique-se de que o caminho está correto
-import { faker } from "@faker-js/faker";
-
 class RegisterPage {
-  generateRandomUser() {
-    return {
-      name: faker.person.fullName(), // Gera nome aleatório
-      email: faker.internet.email(), // Gera email aleatório
-    };
-  }
-
   visitRegistrationPage() {
     cy.visit("https://front.serverest.dev/");
     cy.get(el.registerButton)

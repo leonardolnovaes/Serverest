@@ -1,10 +1,14 @@
 const { defineConfig } = require("cypress");
+const { allureCypress } = require("allure-cypress/reporter");
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}', // Caminho para os testes
     setupNodeEvents(on, config) {
-      // Configurações de eventos aqui, se necessário
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
+      });
+      return config;
     },
+    specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx}",
   },
 });

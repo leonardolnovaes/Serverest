@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "cypress open",
-    "cy-e2e:run": "cypress run",
-    "cy-api:run": "cypress run"
+    "cy-api:run": "cypress run --spec 'cypress/e2e/api/*.cy.js'",
+    "cy-e2e:run": "cypress run --spec 'cypress/e2e/frontend/*.cy.js'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "allure-commandline": "^2.32.0",
+    "allure-cypress": "^3.0.7",
     "cypress": "^13.16.1",
     "cypress-file-upload": "^5.0.8"
   },

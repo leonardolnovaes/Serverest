@@ -10,6 +10,7 @@ class LoginPage {
       .should("be.visible")
       .and("have.attr", "placeholder", "Digite sua senha")
       .type(password);
+    cy.intercept("**/usuarios").as("waitUser");
     cy.get(el.loginButton)
       .should("be.visible")
       .and("exist")
@@ -25,10 +26,11 @@ class LoginPage {
     return this;
   }
 
-  verifySuccessfulLogin() {
+  verifySuccessfulLogin(name) {
     // Exemplo: verificar se a URL mudou após login
+    cy.wait("@waitUser");
     cy.url().should("include", "/admin/home");
-    cy.get("h1").should("contain.text", "Bem Vindo  Teste Serverest"); // Verifica se o cabeçalho correto é exibido
+    cy.get("h1").should("contain.text", `Bem Vindo  ${name}`); // Verifica se o cabeçalho correto é exibido
     return this;
   }
   realizeLoginAPI(email, password) {
@@ -40,7 +42,7 @@ class LoginPage {
         password: password,
       },
     }).then((response) => {
-        return cy.wrap(response.body.authorization)
+      return cy.wrap(response.body.authorization);
     });
   }
 }
