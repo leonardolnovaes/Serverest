@@ -16,7 +16,6 @@ class LoginPage {
       .and("exist")
       .and("have.text", "Entrar")
       .click();
-    cy.wait("@waitUser");
     return this;
   }
 
@@ -29,6 +28,7 @@ class LoginPage {
 
   verifySuccessfulLogin(name) {
     // Exemplo: verificar se a URL mudou após login
+    cy.wait("@waitUser");
     cy.url().should("include", "/admin/home");
     cy.get("h1").should("contain.text", `Bem Vindo  ${name}`); // Verifica se o cabeçalho correto é exibido
     return this;
