@@ -78,10 +78,18 @@ jobs:
             allure generate allure-results --clean -o allure-report/e2e
           fi
 
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages for API
+        if: ${{ github.event.inputs.test_type == 'api' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report
-          commit_message: 'Deploy Allure Report'
-          keep_files: true
+          publish_dir: allure-report/api
+          commit_message: 'Deploy API Allure Report'
+
+      - name: Deploy Allure Report to GitHub Pages for E2E
+        if: ${{ github.event.inputs.test_type == 'e2e' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report/e2e
+          commit_message: 'Deploy E2E Allure Report'
