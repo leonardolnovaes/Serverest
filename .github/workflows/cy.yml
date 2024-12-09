@@ -67,7 +67,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y openjdk-11-jre-headless  # Necessário para o Allure
-          npm install -g allure-commandline --save-dev
+          npm install
 
       - name: Generate Allure Report
         run: |
